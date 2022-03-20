@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 @Repository
 public class AddressRepository {
@@ -43,7 +44,7 @@ public class AddressRepository {
     public List<Address> getByPerson(Integer id) {
         return list.stream()
                 .filter(a -> a.getIdPerson().equals(id))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public Address create(Integer id, Address a) throws BusinessRuleException {

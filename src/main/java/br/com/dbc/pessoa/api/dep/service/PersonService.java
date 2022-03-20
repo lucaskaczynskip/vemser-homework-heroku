@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonService {
@@ -24,7 +25,7 @@ public class PersonService {
         return repo.getAll()
                 .stream()
                 .map(p -> objectMapper.convertValue(p, PersonDTO.class))
-                .toList();
+                .collect(Collectors.toList());
     }
 
 
@@ -37,7 +38,7 @@ public class PersonService {
         return repo.getByName(str)
                 .stream()
                 .map(p -> objectMapper.convertValue(p, PersonDTO.class))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public PersonDTO add(PersonCreateDTO object) throws BusinessRuleException {

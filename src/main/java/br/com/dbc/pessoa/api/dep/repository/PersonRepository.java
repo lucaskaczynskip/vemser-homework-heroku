@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 @Repository
 public class PersonRepository {
@@ -39,7 +40,7 @@ public class PersonRepository {
     public List<Person> getByName(String str) {
         List<Person> persons = list.stream()
                 .filter(person -> person.getName().toLowerCase().contains(str.toLowerCase()))
-                .toList();
+                .collect(Collectors.toList());
         return persons;
     }
 

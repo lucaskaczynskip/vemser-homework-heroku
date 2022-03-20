@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Log
@@ -26,7 +27,7 @@ public class AddressService {
         return repo.getAll()
                 .stream()
                 .map(a -> objectMapper.convertValue(a, AddressDTO.class))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public AddressDTO get(Integer id) throws BusinessRuleException {
@@ -38,7 +39,7 @@ public class AddressService {
         return repo.getByPerson(id)
                 .stream()
                 .map(a -> objectMapper.convertValue(a, AddressDTO.class))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public AddressDTO add(Integer id, AddressCreateDTO a) throws BusinessRuleException {
